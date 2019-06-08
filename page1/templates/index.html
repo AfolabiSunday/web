@@ -1,0 +1,20 @@
+{% load static %}
+{% entends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Test page</title>
+    </head>
+    <body>
+        <hi>new_user</hi>
+        <ul>
+            {% for New_User in new_user %}
+                <li>{{ New_User.username }}({{ New_User.email }})</li>
+            {% endfor %}
+        </ul>
+    </body>
+    </html>
+{%endblock%}
