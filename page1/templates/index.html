@@ -1,20 +1,29 @@
-{% load static %}
-{% entends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Test page</title>
-    </head>
-    <body>
-        <hi>new_user</hi>
-        <ul>
-            {% for New_User in new_user %}
-                <li>{{ New_User.username }}({{ New_User.email }})</li>
-            {% endfor %}
-        </ul>
-    </body>
-    </html>
-{%endblock%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PYSTORE</title>
+</head>
+<body>
+<hi>PRODUCT</hi>
+    {% for p in product %}
+    <div class="roll">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src= "{{p.img}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{p.name}}</h5>
+                    <p class="card-text">{{p.desc}}</p>
+                    <a href="{{p.image}}" class="btn btn-primary">ADD TO CART</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul>
+    {% endfor %}
+</ul>
+</body>
+</html>
+{% endblock %}
