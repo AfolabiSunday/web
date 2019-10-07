@@ -21,3 +21,7 @@ urlpatterns = [
     path('', include('page1.urls')),
     path('admin/', admin.site.urls),
 ]
+
+admin.site.site_header = 'AFOLABI'
+admin.site.index_title = 'DashBoard'
+admin.site.site_title = 'Admin Panel | Django'
