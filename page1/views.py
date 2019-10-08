@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import *
+from django.contrib.auth.forms import AuthenticationForm
 
-from django.contrib import auth
+from django.contrib import auth, messages
 
 def index(request):
     return render(request, 'index.html')
@@ -18,24 +19,29 @@ def register(request):
         form = LoginForm()
    return render (request, 'Register.html', {'form':form})
 
-def Login(request):
+def Login_request(request):
     if request.method == 'POST':
-        user_name = request.POST.get('username','')
-        user_password = request.POST.get('pass', '')
+        form = AuthenticationForm(request=request, data=request.POST)
+        form.is_valid()
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
 
-        user = auth.authenticate(request, username=user_name, password=pass_word)
+        user = auth.authenticate(username=username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect ('/')
+            messages.success(request, 'you have succesfull Login ' + username)
+            return redirect ('/register')
 
         else:
-            error_json = {'error_message': 'User name or password is not correct.'}
-            return render(request, 'login.html', error_json)
+            messages.error(request, 'invalid details')
+            return render(request, 'login.html')
 
     else:
-        return render(request, 'login.html')
+        form = AuthenticationForm()
+        return render(request, 'login.html', {"form":form})
 
-def loginSuccess(request):
-   pass
+def logout_request(request):
+    auth.logout(request)
+    return redirect ('/')
 
 # Create your views here.
