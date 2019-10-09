@@ -4,12 +4,12 @@ from django.db import models
 
 class new_user(models.Model):
 
-    username = models.CharField(max_length= 100, default=False)
-    firstname = models.CharField(max_length=50, default=False)
-    lastname = models.CharField(max_length=50, default=False)
-    email = models.EmailField(max_length=244, default=False)
-    img = models.ImageField(max_length=1000, default=False)
-    password = models.CharField(max_length=50, default=False)
+    username = models.CharField(max_length= 100, blank=True)
+    firstname = models.CharField(max_length=50, blank=True)
+    lastname = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(max_length=244, blank=True)
+    img = models.ImageField(max_length=1000, blank=True)
+    password = models.CharField(max_length=50, blank=True)
     
     def __str__(self):
         return self.username

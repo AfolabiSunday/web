@@ -5,6 +5,6 @@ class LoginForm(forms.ModelForm):
     password =forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = new_user
-        fields = ['username', 'firstname','password', 'lastname', 'email']
+        fields = ['username', 'password', 'firstname', 'lastname', 'email']
 
 
